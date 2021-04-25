@@ -36,7 +36,7 @@ app.get("/", (req, res) => {
 // USER ROUTES
 app.use("/user", require("./routes/userRouter"));
 app.use("/api", require("./routes/imageRouter"));
-app.use("/faq", require("./routes/faqRouter"));
+app.use("", require("./routes/faqRouter"));
 
 
 // ROUTES THAT NOT BEEN DEFINED

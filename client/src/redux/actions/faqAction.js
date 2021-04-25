@@ -1,66 +1,49 @@
-import {
-  FETCH_ALL,
-  CREATE,
-  UPDATE,
-  DELETE,
-} from "../constants/actionTypes";
-import * as api from "../api/index.js";
+import axios from "axios";
 
+// CREATE A NEW SERVICE
+export const createFaq = async (token, data) =>
+  await axios.post(`${process.env.REACT_APP_API}/create-faq`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-// FETCH ALL THE FAQS
-export const getFaqs = () => async (dispatch) => {
-  try {
-    const { data } = await api.fetchFaqs();
+// GET ALL THE FAQS
+export const allFaqs = async () =>
+  await axios.get(`${process.env.REACT_APP_API}/faqs`);
 
-    dispatch({
-      type: FETCH_ALL,
-      payload: data,
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
+// GET SINGLE FAQ
+export const singleFaq = async (faqId) =>
+  await axios.get(`${process.env.REACT_APP_API}/faq/${faqId}`);
 
-// CREATE A NEW FAQ
-export const createFaq = (faq) => async (dispatch) => {
-  try {
-    const { data } = await api.createFaq(faq);
+// USER'S FAQS
+export const userFaqs = async (token, data) =>
+  await axios.get(`${process.env.REACT_APP_API}/user-faqs`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-    dispatch({
-      type: CREATE,
-      payload: data,
-    });
-  } catch (error) {
-    console.log(error.message);
-  }
+// DELETE THE FAQ
+export const deleteFaq = async (token, faqId) => {
+  await axios.delete(
+    `${process.env.REACT_APP_API}/delete-faq/${faqId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 };
 
 // UPDATE A FAQ
-export const updateFaq = (id, faq) => async (dispatch) => {
-  try {
-    const { data } = await api.updateFaq(id, faq);
-
-    dispatch({
-      type: UPDATE,
-      payload: data,
-    });
-  } catch (error) {
-    console.log(error.message);
-  }
-};
-
-
-// DELTE A FAQ
-
-export const deleteFaq = (id) => async (dispatch) => {
-  try {
-    await api.deleteFaq(id);
-
-    dispatch({
-      type: DELETE,
-      payload: id,
-    });
-  } catch (error) {
-    console.log(error.message);
-  }
-};
+export const updateFaq = async (token, data, faqId) =>
+  await axios.patch(
+    `${process.env.REACT_APP_API}/update-faq/${faqId}`,
+    data,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );

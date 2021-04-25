@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { Container, Grow, Grid } from "@material-ui/core";
-import { useDispatch, useSelector } from "react-redux";
-import { getFaqs } from "../../../redux/actions/faqAction";
+import { Link } from "react-router-dom";
+import { Container, Grow, Grid, Button } from "@material-ui/core";
+import { allFaqs } from "../../../redux/actions/faqAction";
 import "./home.css";
 import Posts from "../Posts/Posts";
-import Form from "../Form/Form";
+
 const Home = () => {
-  const [currentId, setCurrentId] = useState(0);
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth);
-  console.log(user)
-  useEffect(() => {
-    // dispatch(getFaqs());
-  }, [currentId, dispatch]);
+    const [posts, setPosts] = useState([]);
+    useEffect(() => {
+      fetchAllFaqs();
+    }, []);
+
+    const fetchAllFaqs = async () => {
+      let res = await allFaqs();
+      setPosts(res.data);
+    };
+
+    console.log(posts)
 
   return (
     <div className="home_page">
@@ -21,18 +25,23 @@ const Home = () => {
           <h2 style={{ marginLeft: "280px" }}>
             WELCOME TO INNVONIX FAQ SYSTEM
           </h2>
+          <Link to="/faqs/new">
+            <Button
+              variant="contained"
+              color="primary"
+              style={{ marginTop: "12px", marginLeft: "915px" }}
+            >
+              + Add A New Faq
+            </Button>
+          </Link>
           <Grid
             container
             justify="space-between"
             alignItems="stretch"
             spacing={3}
           >
-            <Grid item xs={12} sm={7}>
-              <Posts setCurrentId={setCurrentId} />
-            </Grid>
-
-            <Grid item xs={12} sm={4}>
-              <Form currentId={currentId} setCurrentId={setCurrentId} />
+            <Grid item xs={12} sm={12}>
+              <Posts posts={posts} />
             </Grid>
           </Grid>
         </Container>

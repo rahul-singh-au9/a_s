@@ -24,6 +24,14 @@ const faqSchema = mongoose.Schema({
     trim: true,
   },
 
+  postedBy: {
+    type: String,
+  },
+
+  createdBy: {
+    type: String,
+  },
+
   category: [String],
 
   createdAt: {
