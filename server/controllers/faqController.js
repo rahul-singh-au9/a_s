@@ -4,16 +4,16 @@ const faqModel = require("../models/faqModel");
 // CREATE A NEW SERVICE
 const createFaq = async (req, res) => {
   const faq = req.body;
-  const createdService = new faqModel({
+  const createdFaq = new faqModel({
     ...faq,
     createdBy: faq.postedBy,
     createdAt: new Date().toISOString(),
   });
-  createdService.postedBy = service.postedBySeller;
+  createdFaq.postedBy = faq.postedBySeller;
 
   try {
-    insertedService = await createdService.save();
-    res.status(201).json(insertedService);
+    insertedFaq = await createdFaq.save();
+    res.status(201).json(insertedFaq);
   } catch (err) {
     res.status(409).json(err);
   }
@@ -59,7 +59,8 @@ const userFaqs = async (req, res) => {
 const deleteFaq = async (req, res) => {
   try {
     const deletedFaq = await faqModel
-      .findByIdAndDelete(req.params.faqId).exec();
+      .findByIdAndDelete(req.params.faqId)
+      .exec();
 
     res.status(200).json(deletedFaq);
   } catch (err) {

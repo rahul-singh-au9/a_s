@@ -5,9 +5,9 @@ import useStyles from "./styles";
 
 const Cards = ({ posts }) => {
   const classes = useStyles();
-
+  
   return !posts.length ? (
-    <CircularProgress style={{ marginLeft: "45%", marginTop: "10%" }} />
+    <CircularProgress style={{ marginLeft: "45%", marginTop: "12%" }} />
   ) : (
     <Grid
       className={classes.mainContainer}

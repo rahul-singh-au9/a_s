@@ -16,8 +16,6 @@ const Home = () => {
       setPosts(res.data);
     };
 
-    console.log(posts)
-
   return (
     <div className="home_page">
       <Grow in>

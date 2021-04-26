@@ -1,38 +1,40 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import { createFaq } from "../../../redux/actions/faqAction";
 import NewPostForm from "./NewPostForm";
 
 const NewPost = () => {
   const { auth } = useSelector((state) => ({ ...state }));
+  const { token } = useSelector((state) => ({ ...state }));
   const [values, setValues] = useState({
-    title: "",
-    content: "",
-    image: "",
+    question: "",
+    answer: "",
+    category: "",
   });
+
 
   const clear = () => {
     setValues({
-      title: "",
-      content: "",
-      image: "",
+      question: "",
+      answer: "",
+      category: "",
     });
   };
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      let res = await createFaq(auth.token, {
+      let res = await createFaq(token, {
         ...values,
-        postedBy: auth.result.email,
-        postedBySeller: auth.result.name,
+        postedBy: auth.user.email,
+        postedBySeller: auth.user.name,
       });
-      // console.log("NEW SERVICE ====>", res)
-      toast.success("Your New Service is Posted Successfully...");
+      // toast.success("Your New Service is Posted Successfully...");
       clear();
     } catch (err) {
-      toast.error(err.response.data);
+      // toast.error(err.response.data);
+      console.log(err)
     }
   };
 

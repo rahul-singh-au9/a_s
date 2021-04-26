@@ -1,71 +1,51 @@
-import React from "react";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import {
   Card,
-  Button,
   CardContent,
   Typography,
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import useStyles from "./styles";
+import Accordion from "./Accordion";
 
 const ServiceCard = ({
   post,
   handleServiceDelete = (f) => f,
-  owner = false,
-  showViewMoreButton = true,
 }) => {
   const classes = useStyles();
-  const history = useHistory();
+  const { auth } = useSelector((state) => ({ ...state }));
+
 
   return (
-    <Card className={classes.root}>
-
-      <div className={classes.details} style={{ marginLeft: "20px" }}>
-        <CardContent className={classes.content}>
-
-
-          <Typography component="h6" variant="h6" color="primary">
-            Available bookings - {post.total}
-          </Typography>
-
-          <Typography component="h6" variant="h6">
-            Available from - {new Date(post.from).toLocaleDateString()}
-          </Typography>
-        </CardContent>
+    <Card className={classes.root} style={{ marginTop: "20px" }}>
+      <div className={classes.details}>
+        
+        <Typography color="primary" style={{ marginLeft: "10px" }}>
+          category- {post.category[0]}
+        </Typography>
 
         <div className={classes.controls} style={{ marginLeft: "8px" }}>
-          {showViewMoreButton && (
-            <>
-              <Button
-                color="primary"
-                variant="contained"
-                onClick={() => history.push(`/faq/${post._id}`)}
-              >
-                Show more
-              </Button>
-            </>
-          )}
-
-          {owner && (
+          {auth.user.email === post.createdBy && (
             <>
               <Link to={`/faq/edit/${post._id}`}>
                 <EditIcon
                   color="primary"
-                  style={{ marginLeft: "600px", cursor: "pointer" }}
+                  style={{ cursor: "pointer", marginRight: "15px" }}
                 />
               </Link>
 
               <DeleteIcon
                 color="secondary"
-                style={{ marginLeft: "60px", cursor: "pointer" }}
+                style={{ cursor: "pointer" }}
                 onClick={() => handleServiceDelete(post._id)}
               />
             </>
           )}
         </div>
       </div>
+      <Accordion question={post.question} answer={post.answer} />
     </Card>
   );
 };

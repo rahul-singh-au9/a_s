@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+
 import {
   dispatchLogin,
   fetchUser,
@@ -9,6 +10,8 @@ import {
 
 import Header from "./components/Header/Header";
 import Body from "./components/body/Body";
+import NewPost from "./components/body/NewPost/NewPost";
+import EditPost from "./components/body/EditPost/EditPost"
 import axios from "axios";
 
 function App() {
@@ -41,12 +44,17 @@ function App() {
   }, [token, dispatch]);
 
   return (
-    <Router>
+    <BrowserRouter>
       <div className="App">
         <Header />
-        <Body />
+        <Switch>
+          <Route exact path="/" component={Body} />
+          <Route exact path="/login" component={Body} />
+          <Route exact path="/faqs/new" component={NewPost} />
+          <Route exact path="/faq/edit/:faqId" component={EditPost} />
+        </Switch>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 

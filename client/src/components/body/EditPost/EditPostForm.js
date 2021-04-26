@@ -1,17 +1,8 @@
-import {
-  TextField,
-  Button,
-  Paper,
-} from "@material-ui/core";
+import { TextField, Button, Paper } from "@material-ui/core";
 import useStyles from "./styles";
 
-const NewServiceForm = (props) => {
-  const {
-    values,
-    setValues,
-    handleSubmit,
-    clear,
-  } = props;
+const EidtPostForm = (props) => {
+  const { values, setValues, handleSubmit, clear } = props;
 
   // further destructing values from state
   const { question, answer, category } = values;
@@ -20,7 +11,7 @@ const NewServiceForm = (props) => {
 
   return (
     <>
-      <h1 style={{ marginTop: "18px", marginLeft: "40%" }}>Add A New Faq</h1>
+      <h1 style={{ marginTop: "18px", marginLeft: "40%" }}>Edit A Faq</h1>
       <Paper className={classes.paper}>
         <form
           autoComplete="off"
@@ -85,4 +76,4 @@ const NewServiceForm = (props) => {
   );
 };
 
-export default NewServiceForm;
+export default EidtPostForm;

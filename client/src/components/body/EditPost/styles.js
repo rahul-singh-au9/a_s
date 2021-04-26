@@ -9,6 +9,9 @@ export default makeStyles((theme) => ({
 
   paper: {
     padding: theme.spacing(2),
+    maxWidth: "1200px",
+    marginLeft: "6%",
+    marginTop: "10px",
   },
 
   form: {
@@ -24,5 +27,20 @@ export default makeStyles((theme) => ({
 
   buttonSubmit: {
     marginBottom: 10,
+  },
+
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
+
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 200,
+  },
+
+  selectEmpty: {
+    marginTop: theme.spacing(2),
   },
 }));

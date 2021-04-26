@@ -20,7 +20,6 @@ const faqSchema = mongoose.Schema({
 
   creator: {
     type: String,
-    required: true,
     trim: true,
   },
 
