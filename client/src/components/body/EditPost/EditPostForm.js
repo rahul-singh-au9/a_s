@@ -69,8 +69,7 @@ const EidtPostForm = (props) => {
             Clear
           </Button>
         </form>
-        {/* <pre>{JSON.stringify(values, null, 4)}</pre>
-                {JSON.stringify(location)} */}
+        <pre>{JSON.stringify(values, null, 4)}</pre>
       </Paper>
     </>
   );

@@ -39,8 +39,8 @@ const EditPost = ({ match }) => {
         { ...values },
         match.params.faqId
       );
-      console.log("UPDATED SERVICE ====>", res);
-      // toast.success(`${values.title} is Edited Successfully...`);
+      console.log("UPDATED SERVICE ====>", res, values);
+      // toast.success(`Faq is Edited Successfully...`);
       clear();
     } catch (err) {
       // toast.error(err.response.data);
