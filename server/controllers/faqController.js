@@ -73,7 +73,7 @@ const updateFaq = async (req, res) => {
   const faq = req.body;
 
   try {
-    const _id = req.params.serviceId;
+    const _id = req.params.faqId;
 
     const updatedFaq = await faqModel.findByIdAndUpdate(
       _id,

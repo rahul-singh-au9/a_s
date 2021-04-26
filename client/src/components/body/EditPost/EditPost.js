@@ -13,7 +13,6 @@ const EditPost = ({ match }) => {
     category: "",
   });
 
-
   const clear = () => {
     setValues({
       question: "",
@@ -34,17 +33,13 @@ const EditPost = ({ match }) => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      let res = await updateFaq(
-        token,
-        { ...values },
-        match.params.faqId
-      );
-      console.log("UPDATED SERVICE ====>", res, values);
+      let res = await updateFaq(token, { ...values }, match.params.faqId);
+      console.log("UPDATED SERVICE ====>", res);
       // toast.success(`Faq is Edited Successfully...`);
       clear();
     } catch (err) {
       // toast.error(err.response.data);
-      console.log(err)
+      console.log(err);
     }
   };
 
