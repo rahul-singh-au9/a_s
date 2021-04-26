@@ -49,7 +49,9 @@ function App() {
         <Header />
         <Switch>
           <Route exact path="/" component={Body} />
+          <Route exact path="/profile" component={Body} />
           <Route exact path="/login" component={Body} />
+          <Route exact path="/register" component={Body} />
           <Route exact path="/faqs/new" component={NewPost} />
           <Route exact path="/faq/edit/:faqId" component={EditPost} />
         </Switch>
