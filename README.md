@@ -1,6 +1,6 @@
 <img src = "https://i.ibb.co/GPFcmtb/Screenshot-64.png">
 
-<img src = "https://i.ibb.co/Pzx8R68/Screenshot-68.png">
+<img src = "https://i.ibb.co/3Mb7Pff/Screenshot-86.png">
 
 <img src = "https://i.ibb.co/HBvHSsx/Screenshot-65.png">
 
@@ -12,6 +12,9 @@
 
 <img src = "https://i.ibb.co/7WJmB9h/Screenshot-70.png">
 
+# to login use credentials
+# email ==> rahulsg1508@gmail.com
+# password ==> Rahul123
 
 # Getting Started with Create React App
 
