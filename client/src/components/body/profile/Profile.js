@@ -1,15 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { isLength, isMatch } from "../../utils/validation/Validation";
-import {
-  showSuccessMsg,
-  showErrMsg,
-} from "../../utils/notification/Notification";
-import {
-  fetchAllUsers,
-  dispatchGetAllUsers,
-} from "../../../redux/actions/usersAction";
+import { showSuccessMsg, showErrMsg } from "../../utils/notification/Notification";
 
 const initialState = {
   name: "",
@@ -19,27 +12,16 @@ const initialState = {
   success: "",
 };
 
-function Profile() {
+const Profile = () => {
   const auth = useSelector((state) => state.auth);
   const token = useSelector((state) => state.token);
+  const { user } = auth;
 
-  const { user, isAdmin } = auth;
   const [data, setData] = useState(initialState);
   const { name, password, cf_password, err, success } = data;
 
   const [avatar, setAvatar] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [callback, setCallback] = useState(false);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (isAdmin) {
-      fetchAllUsers(token).then((res) => {
-        dispatch(dispatchGetAllUsers(res));
-      });
-    }
-  }, [token, isAdmin, dispatch, callback]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -145,7 +127,7 @@ function Profile() {
       </div>
       <div className="profile_page">
         <div className="col-left">
-          <h2>{isAdmin ? "Admin Profile" : "User Profile"}</h2>
+          <h2>User Profile</h2>
 
           <div className="avatar">
             <img src={avatar ? avatar : user.avatar} alt="" />

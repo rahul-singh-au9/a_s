@@ -1,10 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { isEmail } from "../../utils/validation/Validation";
-import {
-  showErrMsg,
-  showSuccessMsg,
-} from "../../utils/notification/Notification";
+import { showErrMsg, showSuccessMsg } from "../../utils/notification/Notification";
 
 const initialState = {
   email: "",
@@ -12,9 +9,8 @@ const initialState = {
   success: "",
 };
 
-function ForgotPassword() {
+const ForgotPassword = () => {
   const [data, setData] = useState(initialState);
-
   const { email, err, success } = data;
 
   const handleChangeInput = (e) => {

@@ -1,10 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
-import {
-  showErrMsg,
-  showSuccessMsg,
-} from "../../utils/notification/Notification";
+import { showErrMsg, showSuccessMsg } from "../../utils/notification/Notification";
 import { dispatchLogin } from "../../../redux/actions/authAction";
 import { useDispatch } from "react-redux";
 
@@ -15,7 +12,7 @@ const initialState = {
   success: "",
 };
 
-function Login() {
+const Login = () => {
   const [user, setUser] = useState(initialState);
   const dispatch = useDispatch();
   const history = useHistory();

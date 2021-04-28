@@ -1,16 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import {
-  showErrMsg,
-  showSuccessMsg,
-} from "../../utils/notification/Notification";
-import {
-  isEmpty,
-  isEmail,
-  isLength,
-  isMatch,
-} from "../../utils/validation/Validation";
+import { showErrMsg, showSuccessMsg } from "../../utils/notification/Notification";
+import { isEmpty, isEmail, isLength, isMatch } from "../../utils/validation/Validation";
 
 const initialState = {
   name: "",
@@ -21,9 +13,9 @@ const initialState = {
   success: "",
 };
 
-function Register() {
+const Register = () =>{
+  
   const [user, setUser] = useState(initialState);
-
   const { name, email, password, cf_password, err, success } = user;
 
   const handleChangeInput = (e) => {

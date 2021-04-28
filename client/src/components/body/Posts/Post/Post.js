@@ -1,10 +1,6 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import {
-  Card,
-  CardContent,
-  Typography,
-} from "@material-ui/core";
+import { Card, Typography } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import useStyles from "./styles";
@@ -20,7 +16,6 @@ const Post = ({ post }) => {
     if (!window.confirm("Are You Sure ?")) return;
 
     deleteFaq(token, faqId).then((res) => {
-      // toast.success("Your Service has been successfully deleted...");
       allFaqs();
     });
   };

@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
-// import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 import { createFaq } from "../../../redux/actions/faqAction";
 import NewPostForm from "./NewPostForm";
 
 const NewPost = () => {
   const { auth } = useSelector((state) => ({ ...state }));
   const { token } = useSelector((state) => ({ ...state }));
+  const history = useHistory();
+
   const [values, setValues] = useState({
     question: "",
     answer: "",
@@ -30,10 +32,9 @@ const NewPost = () => {
         postedBy: auth.user.email,
         postedBySeller: auth.user.name,
       });
-      // toast.success("Your New Service is Posted Successfully...");
       clear();
+      history.push("/");
     } catch (err) {
-      // toast.error(err.response.data);
       console.log(err)
     }
   };

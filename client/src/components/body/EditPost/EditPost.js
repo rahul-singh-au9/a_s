@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-// import { toast } from "react-toastify";
 import { singleFaq, updateFaq } from "../../../redux/actions/faqAction";
 import EditPostForm from "./EditPostForm";
 
 const EditPost = ({ match }) => {
   const { token } = useSelector((state) => ({ ...state }));
+  const history = useHistory();
 
   const [values, setValues] = useState({
     question: "",
@@ -35,10 +36,9 @@ const EditPost = ({ match }) => {
       e.preventDefault();
       let res = await updateFaq(token, { ...values }, match.params.faqId);
       console.log("UPDATED SERVICE ====>", res);
-      // toast.success(`Faq is Edited Successfully...`);
       clear();
+      history.push("/");
     } catch (err) {
-      // toast.error(err.response.data);
       console.log(err);
     }
   };
