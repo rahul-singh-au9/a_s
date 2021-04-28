@@ -11,14 +11,14 @@ const Home = () => {
     const auth = useSelector((state) => state.auth);
     const [posts, setPosts] = useState([]);
 
-    useEffect(() => {
-      fetchAllFaqs();
-    }, []);
-
     const fetchAllFaqs = async () => {
       let res = await allFaqs();
       setPosts(res.data);
     };
+
+    useEffect(() => {
+      fetchAllFaqs();
+    }, [fetchAllFaqs]);
 
   return (
     <div className="home_page">
